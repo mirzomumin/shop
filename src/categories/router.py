@@ -36,6 +36,6 @@ async def update_category(
     return updated_category
 
 
-@router.delete_category("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete(result: None = Depends(CategoriesService.delete)) -> None:
+@router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_category(result: None = Depends(CategoriesService.delete)) -> None:
     return result
