@@ -30,12 +30,12 @@ async def get_category(
 
 
 @router.patch("/{id}")
-async def update(
+async def update_category(
     updated_category: Category = Depends(CategoriesService.update),
 ) -> CategorySchema:
     return updated_category
 
 
-@router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete_category("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete(result: None = Depends(CategoriesService.delete)) -> None:
     return result
