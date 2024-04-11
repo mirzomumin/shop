@@ -4,7 +4,8 @@ import unicodedata
 
 
 def utcnow_custom():
-    return datetime.datetime.now(datetime.UTC)
+    print(datetime.datetime.now(datetime.timezone.utc))
+    return datetime.datetime.now(datetime.timezone.utc)
 
 
 def slugify(value, allow_unicode=False):
