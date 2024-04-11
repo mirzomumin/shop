@@ -12,6 +12,8 @@ uvicorn = {extras = ["standard"], version = "^0.29.0"}
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.29"}
 asyncpg = "^0.29.0"
 pre-commit = "^3.7.0"
+python-multipart = "^0.0.9"
+aiofiles = "^23.2.1"
 
 
 [build-system]
