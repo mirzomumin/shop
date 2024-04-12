@@ -1,6 +1,8 @@
 from decimal import Decimal
 from fastapi import UploadFile, File, Form
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
+from src.products.constants import ACCEPTED_FILE_TYPES
+from src.exceptions import InvalidMediaType
 
 
 class CreateProductSchema(BaseModel):
@@ -33,6 +35,12 @@ class CreateProductSchema(BaseModel):
             category_id=category_id,
         )
 
+    @validator("image")
+    def valid_image(cls, value: UploadFile):
+        if value.content_type not in ACCEPTED_FILE_TYPES:
+            raise InvalidMediaType
+        return value
+
 
 class UpdateProductSchema(CreateProductSchema):
     name: str | None
@@ -60,6 +68,15 @@ class UpdateProductSchema(CreateProductSchema):
             is_available=is_available,
             category_id=category_id,
         )
+
+    @validator("image")
+    def valid_image(cls, value: UploadFile):
+        if value is None:
+            return value
+
+        if value.content_type not in ACCEPTED_FILE_TYPES:
+            raise InvalidMediaType
+        return value
 
 
 class ProductSchema(BaseModel):
