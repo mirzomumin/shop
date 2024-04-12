@@ -20,3 +20,13 @@ class ObjectAlreadyExists(HTTPException):
         headers: Dict[str, str] | None = None,
     ) -> None:
         super().__init__(status_code, detail, headers)
+
+
+class InvalidMediaType(HTTPException):
+    def __init__(
+        self,
+        status_code: int = status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+        detail: Any = "Invalid media file type",
+        headers: Dict[str, str] | None = None,
+    ) -> None:
+        super().__init__(status_code, detail, headers)
