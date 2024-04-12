@@ -14,8 +14,16 @@ asyncpg = "^0.29.0"
 pre-commit = "^3.7.0"
 python-multipart = "^0.0.9"
 aiofiles = "^23.2.1"
+pydantic-settings = "^2.2.1"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".", "src",
+]
+asyncio_mode="auto"
