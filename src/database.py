@@ -5,10 +5,10 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 from sqlalchemy.orm import DeclarativeBase
+from src.config import settings
 
 
-SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://admin:admin@localhost/shop_db"
-
+SQLALCHEMY_DATABASE_URL = settings.db_url_asyncpg
 async_engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = async_sessionmaker(autocommit=False, autoflush=False, bind=async_engine)
