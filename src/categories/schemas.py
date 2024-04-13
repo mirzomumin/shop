@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 class CreateCategorySchema(BaseModel):
     name: str = Field(..., max_length=200)
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
