@@ -1,4 +1,5 @@
 import aiofiles
+from typing import Optional
 from fastapi import Depends, UploadFile
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -36,9 +37,13 @@ class ProductsService:
     @classmethod
     async def list(
         cls,
+        category_id: Optional[int] = None,
         db: AsyncSession = Depends(get_db),
     ) -> list[Product]:
-        products = await ProductsRepository.list(db=db)
+        params = {}
+        if category_id:
+            params = {"category_id": category_id}
+        products = await ProductsRepository.list(db=db, filter_by=params)
         return products
 
     @classmethod
