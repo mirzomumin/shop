@@ -77,7 +77,7 @@ class ProductsService:
         if updated_product is None:
             raise ObjectNotFound
         if product_image:
-            cls._save_image(image_location=image_location, image=product_image)
+            await cls._save_image(image_location=image_location, image=product_image)
         await db.commit()
         await db.refresh(updated_product)
         return updated_product
