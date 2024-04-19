@@ -90,3 +90,20 @@ class ProductSchema(BaseModel):
     # created_at: datetime
     # updated_at: datetime
     category_id: int
+
+
+class CartProductSchema(ProductSchema):
+    price: float
+
+    @classmethod
+    def from_db(cls, product):
+        return cls(
+            id=product.id,
+            name=product.name,
+            slug=product.slug,
+            image=product.image,
+            description=product.description,
+            price=product.price,
+            is_available=product.is_available,
+            category_id=product.category_id,
+        )

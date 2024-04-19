@@ -24,5 +24,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env")
 
+    CART_SESSION_ID: str = "cart"
+
 
 settings = Settings()

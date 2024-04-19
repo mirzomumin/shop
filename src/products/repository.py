@@ -52,3 +52,13 @@ class ProductsRepository:
         stmt = delete(Product).where(Product.id == id).returning(Product.id)
         result = await db.execute(stmt)
         return result.scalar()
+
+    @classmethod
+    async def filter_by_ids(
+        cls,
+        ids: iter,
+        db: AsyncSession,
+    ):
+        query = select(Product).filter(Product.id.in_(ids))
+        products = await db.execute(query)
+        return products.scalars().all()
