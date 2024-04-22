@@ -5,7 +5,7 @@ from src.categories.models import Category
 
 class CategoriesRepository:
     @classmethod
-    async def add(cls, db: AsyncSession, values: dict) -> Category:
+    async def add(cls, values: dict, db: AsyncSession) -> Category:
         stmt = insert(Category).values(**values).returning(Category)
         category = await db.execute(stmt)
         return category.scalar_one()
