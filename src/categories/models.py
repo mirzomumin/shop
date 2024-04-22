@@ -12,7 +12,9 @@ class Category(Base):
     slug: Mapped[str] = mapped_column(String(200), unique=True, index=True)
 
     products: Mapped[list["Product"]] = relationship(  # noqa
-        "Product", back_populates="category", cascade="all, delete-orphan"
+        "Product",
+        back_populates="category",
+        cascade="all, delete-orphan",
     )
 
     def __str__(self) -> str:

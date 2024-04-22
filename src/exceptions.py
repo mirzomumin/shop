@@ -30,3 +30,13 @@ class InvalidMediaType(HTTPException):
         headers: Dict[str, str] | None = None,
     ) -> None:
         super().__init__(status_code, detail, headers)
+
+
+class CartEmpty(HTTPException):
+    def __init__(
+        self,
+        status_code: int = status.HTTP_400_BAD_REQUEST,
+        detail: Any = "Cart is empty",
+        headers: Dict[str, str] | None = None,
+    ) -> None:
+        super().__init__(status_code, detail, headers)

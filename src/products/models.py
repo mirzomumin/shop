@@ -21,7 +21,14 @@ class Product(Base):
     # )
 
     category_id: Mapped[int] = mapped_column(ForeignKey("categories.id"))
-    category: Mapped["Category"] = relationship("Category", back_populates="products")  # noqa
+    category: Mapped["Category"] = relationship(  # noqa
+        "Category", back_populates="products"
+    )
+    order_items: Mapped[list["OrderItem"]] = relationship(  # noqa
+        "OrderItem",
+        back_populates="product",
+        cascade="all, delete-orphan",
+    )
 
     def __str__(self) -> str:
         return self.name
