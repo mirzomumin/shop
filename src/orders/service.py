@@ -6,6 +6,7 @@ from src.cart.cart import Cart
 from src.cart.service import CartService
 from src.orders.schemas import CreateOrderSchema
 from src.orders.repository import OrdersRepository, OrderItemsRepository
+from src.orders.tasks import sync_send_mail
 from src.database import get_db
 
 
@@ -42,6 +43,7 @@ class OrdersService:
             await db.commit()
             await db.refresh(order)
             cart_obj.clear()
+            sync_send_mail.delay(order.id)
             return order
 
     @classmethod

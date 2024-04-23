@@ -1,7 +1,7 @@
 from decimal import Decimal
 from fastapi import Request
 
-from src.config import settings
+from src.configs.config import settings
 from src.products.models import Product
 
 

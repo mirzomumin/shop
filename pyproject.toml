@@ -19,6 +19,8 @@ pytest = "^8.1.1"
 httpx = "^0.27.0"
 pytest-asyncio = "^0.23.6"
 itsdangerous = "^2.1.2"
+celery = {extras = ["redis"], version = "^5.4.0"}
+fastapi-mail = "^1.4.1"
 
 [build-system]
 requires = ["poetry-core"]

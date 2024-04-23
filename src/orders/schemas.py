@@ -1,5 +1,5 @@
 from decimal import Decimal
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 
 
 class OrderItem(BaseModel):
@@ -28,13 +28,27 @@ class OrderSchemaList(BaseModel):
     id: int
     first_name: str
     last_name: str
-    email: str
+    email: EmailStr
     address: str
     postal_code: str
     city: str
+    paid: bool
 
     class ConfigDict:
         from_attributes = True
+
+    @classmethod
+    def from_db(cls, order):
+        return cls(
+            id=order.id,
+            first_name=order.first_name,
+            last_name=order.last_name,
+            email=order.email,
+            address=order.address,
+            postal_code=order.postal_code,
+            city=order.city,
+            paid=order.paid,
+        )
 
 
 class OrderSchema(OrderSchemaList):

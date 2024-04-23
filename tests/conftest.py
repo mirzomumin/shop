@@ -8,7 +8,7 @@ from sqlalchemy.pool import NullPool
 
 from src.database import get_db
 from src import Base
-from src.config import settings
+from src.configs.config import settings
 from src.main import app
 
 # DATABASE

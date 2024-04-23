@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
 
-from src.config import settings
+from src.configs.config import settings
 from src.categories.router import router as categories_router
 from src.products.router import router as products_router
 from src.cart.router import router as cart_router
