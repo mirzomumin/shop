@@ -1,5 +1,6 @@
 import aiofiles
-from fastapi import UploadFile
+from fastapi import UploadFile, Cookie
+from httpx import AsyncClient
 from src.categories.schemas import CreateCategorySchema
 from src.categories.models import Category
 from src.categories.repository import CategoriesRepository
@@ -39,3 +40,7 @@ async def _save_image(image_location: str, image: UploadFile) -> None:
     async with aiofiles.open(image_location, "wb+") as file_object:
         content = await image.read()
         await file_object.write(content)
+
+
+async def add_cookie_data(ac: AsyncClient):
+    ac.cookies = Cookie()
